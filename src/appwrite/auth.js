@@ -32,7 +32,11 @@ export class AuthService {
   }
 
   async login({ email, password }) {
-    await this.account.createEmailPasswordSession(email, password);
+    try {
+      await this.account.createEmailPasswordSession(email, password);
+    } catch (error) {
+      console.log("Appwrite service :: login :: error", error);
+    }
   }
 
   async getCurrentUser() {
